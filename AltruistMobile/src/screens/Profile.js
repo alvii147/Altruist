@@ -5,6 +5,7 @@ import { Avatar, IconButton, Button } from 'react-native-paper';
 import { Header } from 'react-native-elements';
 import Colors from '../constants/Colors';
 import { VictoryPie } from 'victory-native';
+import IP from '../constants/IP';
 
 const graphicColor = ["tomato", "orange", "gold"];
 const wantedGraphicData = [{ x: "Accepted", y: 35 }, { x: "Completed", y: 20 }, { x: "Created", y: 3 }];
@@ -27,7 +28,7 @@ export default class Home extends Component {
     componentDidMount = async () => {
         const async_user_id = await AsyncStorage.getItem('userid');
         console.log(async_user_id);
-        const response = await fetch('http://192.168.0.102:8000/api/users/' + async_user_id.toString())
+        const response = await fetch(IP.baseaddr + 'api/users/' + async_user_id.toString())
             .then(response => {
                 if (response.status > 400) {
                     console.log('Error in GET request');
